@@ -22,4 +22,5 @@
     <string name="asteroid_name">Asteroid name</string>
     <string name="item_date">date</string>
     <string name="asteroid_status">Asteroid status</string>
+    <string name="nasa_image_loading_error">NASA Picture of the day not loaded</string>
 </resources>

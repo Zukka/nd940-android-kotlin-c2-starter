@@ -8,14 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.databinding.AsteroidItemBinding
 
-class AsteroidsAdapter(val onClickListener: OnClickListener) : ListAdapter<Asteroid, AsteroidsAdapter.AsteroidsViewHolder>(DiffCallback) {
+class AsteroidsAdapter(private val onClickListener: OnClickListener) : ListAdapter<Asteroid, AsteroidsAdapter.AsteroidsViewHolder>(DiffCallback) {
 
     class AsteroidsViewHolder(private var binding: AsteroidItemBinding):
             RecyclerView.ViewHolder(binding.root) {
         fun bind(asteroid: Asteroid) {
             binding.asteroid = asteroid
-            // This is important, because it forces the data binding to execute immediately,
-            // which allows the RecyclerView to make the correct view size measurements
             binding.executePendingBindings()
         }
     }
@@ -40,7 +38,8 @@ class AsteroidsAdapter(val onClickListener: OnClickListener) : ListAdapter<Aster
         holder.itemView.setOnClickListener {
             onClickListener.onClick(asteroid)
         }
-        holder.bind(asteroid)    }
+        holder.bind(asteroid)
+    }
 
     class OnClickListener(val clickListener: (asteroid: Asteroid) -> Unit) {
         fun onClick(asteroid: Asteroid) = clickListener(asteroid)

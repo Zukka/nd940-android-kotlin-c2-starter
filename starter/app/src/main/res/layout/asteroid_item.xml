@@ -8,54 +8,54 @@
             name="asteroid"
             type="com.udacity.asteroidradar.Asteroid" />
     </data>
-    <com.google.android.material.card.MaterialCardView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_margin"
-        app:cardCornerRadius="@dimen/card_corner_radius"
-        app:cardElevation="@dimen/card_evevation">
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imageStatus"
+            statusIcon="@{asteroid.potentiallyHazardous}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@{String.valueOf(asteroid.potentiallyHazardous)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/ic_status_potentially_hazardous" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/small_margin"
-                android:layout_marginEnd="@dimen/normal_margin"
-                android:contentDescription="@string/asteroid_status"
-                app:layout_constraintBottom_toBottomOf="@+id/asteroid_item_date"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/asteroid_item_name"
-                app:layout_constraintTop_toTopOf="@+id/asteroid_item_name"
-                tools:srcCompat="@drawable/ic_status_potentially_hazardous" />
+        <TextView
+            android:id="@+id/asteroid_item_date"
+            style="@style/AsteroidStyleDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:contentDescription="@{asteroid.closeApproachDate}"
+            android:text="@{asteroid.closeApproachDate}"
+            android:textColor="@color/default_text_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/asteroid_item_name"
+            app:layout_constraintTop_toBottomOf="@+id/asteroid_item_name"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="@string/item_date" />
 
-            <TextView
-                android:id="@+id/asteroid_item_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/small_margin"
-                android:hint="@string/item_date"
-                style="@style/AsteroidStyleDate"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/asteroid_item_name"
-                app:layout_constraintStart_toStartOf="@+id/asteroid_item_name"
-                app:layout_constraintTop_toBottomOf="@+id/asteroid_item_name" />
+        <TextView
+            android:id="@+id/asteroid_item_name"
+            style="@style/AsteroidStyleName"
+            android:layout_width="272dp"
+            android:layout_height="31dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@{asteroid.codename}"
+            android:text="@{asteroid.codename}"
+            android:textColor="@color/default_text_color"
+            app:layout_constraintEnd_toStartOf="@+id/imageStatus"
+            app:layout_constraintHorizontal_bias="0.373"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/asteroid_name" />
 
-            <TextView
-                android:id="@+id/asteroid_item_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/normal_margin"
-                android:layout_marginTop="@dimen/small_margin"
-                android:hint="@string/asteroid_name"
-                android:text="@{asteroid.codename}"
-                app:layout_constraintEnd_toStartOf="@+id/imageView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/AsteroidStyleName" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

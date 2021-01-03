@@ -1,7 +1,9 @@
 package com.udacity.asteroidradar.api
 
+import com.squareup.moshi.JsonClass
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.Constants
+import com.udacity.asteroidradar.database.AsteroidEntity
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -55,3 +57,34 @@ private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
 
     return formattedDateList
 }
+
+fun ArrayList<Asteroid>.asDatabaseModel(): Array<AsteroidEntity> {
+    return this.map {
+        AsteroidEntity(
+                id = it.id,
+                codename = it.codename,
+                close_approach_date = it.closeApproachDate,
+                absolute_magnitude = it.absoluteMagnitude,
+                estimated_diameter_max = it.estimatedDiameter,
+                relative_velocity = it.relativeVelocity,
+                distance_from_Earth = it.distanceFromEarth,
+                is_potentially_hazardous_asteroid = it.isPotentiallyHazardous
+        )
+    }.toTypedArray()
+}
+
+@JsonClass(generateAdapter = true)
+data class ImageOfTheDay(
+        val media_type: String= "",
+        val title: String= "",
+        val url: String
+)
+
+fun ImageOfTheDay.asDomainModel(): ImageOfTheDay {
+    return ImageOfTheDay(
+            media_type = this.media_type,
+            title = this.title,
+            url = this.url
+    )
+}
+
